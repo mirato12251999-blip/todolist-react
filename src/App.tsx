@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { CustomInput } from './components/commons/customInput/customInput'
 import './App.css'
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <CustomInput />
         </p>
       </div>
       <p className="read-the-docs">
