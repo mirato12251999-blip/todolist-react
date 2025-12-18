@@ -1,0 +1,26 @@
+.statusBar {
+    width: 23%;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 1em;
+}
+
+.p {
+    padding: 15px;
+    border-bottom: 1px solid #555;
+    margin: 0;
+}
+
+.tasksContainer {
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 500px;
+}
