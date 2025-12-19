@@ -1,9 +1,15 @@
 import { useState } from 'react';
-import { SquareChevronRight } from 'lucide-react';
+import { SquareChevronRight, ArrowBigRight } from 'lucide-react';
 
 import styles from './task.module.css';
 
-export const Task = () => {
+interface propsType {
+    title: string;
+    details: string;
+    hanldeStatus?: () => void;
+}
+
+export const Task = (props: propsType) => {
     const [isShow, setShow] = useState(false);
 
     const handleTask = () => {
@@ -13,15 +19,20 @@ export const Task = () => {
     return (
         <div className={styles["task"]} onClick={handleTask}>
             <div className={styles["header"]}>
-                {
-                    isShow ? <SquareChevronRight className={styles["iconRotated"]} /> : <SquareChevronRight className={styles["icon"]} />
-                }
-                <p>Task Title</p>
+                <div>
+                    {
+                        isShow ? <SquareChevronRight className={styles["iconRotated"]} /> : <SquareChevronRight className={styles["icon"]} />
+                    }
+                    <p>{props.title}</p>
+                </div>
+                <button className={styles["statusBtn"]} onClick={props.hanldeStatus}>
+                    <ArrowBigRight className={styles["arrowIcon"]} />
+                </button>
             </div>
             {
                 isShow && (
                     <div className={styles["details"]}>
-                        <p>Task details go here. This section is visible when isShow is true.</p>
+                        <p>{props.details}</p>
                     </div>
                 )
             }
