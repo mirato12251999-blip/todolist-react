@@ -7,8 +7,6 @@ interface propsType {
     title?: string;
     details?: string;
     onDragStart?: (event: React.DragEvent<HTMLDivElement>) => void;
-    onDrop?: (event: React.DragEvent<HTMLDivElement>) => void;
-    onDragOver?: (event: React.DragEvent<HTMLDivElement>) => void;
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -20,7 +18,7 @@ export const Task = (props: propsType) => {
     }
 
     return (
-        <div className={styles["task"]} onClick={handleTask} onDragStart={props.onDragStart} onDrop={props.onDrop} onDragOver={props.onDragOver} draggable>
+        <div className={styles["task"]} onClick={handleTask} onDragStart={props.onDragStart} draggable>
             <div className={styles["header"]}>
                 <div>
                     {

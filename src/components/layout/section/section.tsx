@@ -30,46 +30,37 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
 
     const handleDropStatus = (event: React.DragEvent<HTMLDivElement>, status: string) => {
         event.preventDefault();
-        let idx = Number(event.dataTransfer.getData("id"));
-        let result = tasks;
-        result.map((task) => {
-            if (task.id === idx) return task.status = status;
-            else return task;
-        });
-        setTasks(Array.from(result));
+        const idx = Number(event.dataTransfer.getData("id"));
+        setTasks(prev => prev.map(task => task.id === idx ? { ...task, status } : task));
     }
 
     return (
         <div className={styles["section"]}>
-            <StatusBar status='To Do'>
+            <StatusBar status='To Do' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'To Do') }}>
                 {
-                    /* Example of passing drag-and-drop handlers to Task component */
                     tasks.filter(task => task.status === 'To Do').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'To Do') }} />
+                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} />
                     ))
                 }
             </StatusBar>
-            <StatusBar status='In Progress'>
+            <StatusBar status='In Progress' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'In Progress') }}>
                 {
-                    /* Example of passing drag-and-drop handlers to Task component */
                     tasks.filter(task => task.status === 'In Progress').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'In Progress') }} />
+                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} />
                     ))
                 }
             </StatusBar>
-            <StatusBar status='Review'>
+            <StatusBar status='Review' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'Review') }}>
                 {
-                    /* Example of passing drag-and-drop handlers to Task component */
                     tasks.filter(task => task.status === 'Review').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'Review') }} />
+                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} />
                     ))
                 }
             </StatusBar>
-            <StatusBar status='Done'>
+            <StatusBar status='Done' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'Done') }}>
                 {
-                    /* Example of passing drag-and-drop handlers to Task component */
                     tasks.filter(task => task.status === 'Done').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, 'Done') }} />
+                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} />
                     ))
                 }
             </StatusBar>

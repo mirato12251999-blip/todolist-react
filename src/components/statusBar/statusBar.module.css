@@ -22,5 +22,6 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: auto;
+    pointer-events: auto;
     max-height: 500px;
 }
