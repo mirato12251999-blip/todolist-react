@@ -13,7 +13,7 @@ interface propsType {
 }
 
 export const Task = (props: propsType) => {
-    const [isShow, setShow] = useState(false);
+    const [isShow, setShow] = useState<boolean>(false);
 
     const handleTask = () => {
         setShow(!isShow);
