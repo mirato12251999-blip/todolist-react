@@ -18,9 +18,9 @@ export const Task = (props: propsType) => {
     }
 
     return (
-        <div className={styles["task"]} onClick={handleTask} onDragStart={props.onDragStart} draggable>
+        <div className={styles["task"]} onDragStart={props.onDragStart} draggable>
             <div className={styles["header"]}>
-                <div>
+                <div onClick={handleTask}>
                     {
                         isShow ? <SquareChevronRight className={styles["iconRotated"]} /> : <SquareChevronRight className={styles["icon"]} />
                     }
