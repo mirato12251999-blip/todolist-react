@@ -51,9 +51,24 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
         setTasks([...tasks]);
     }
 
+    const handleInsertTask = () => {
+        const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 0;
+        const newTask: taskType = { id: newId, title: 'New Task', details: 'Details of the new task.', status: '0' };
+        setTasks(prev => [...prev, newTask]);
+    }
+
+    const handleFilterTask = () => {
+        console.log("Filter button clicked");
+    }
+
+    const handleSortTask = () => {
+        console.log("Sort button clicked");
+    }
+
+
     return (
         <div className={styles["section"]}>
-            <Navbar />
+            <Navbar onClickInsert={handleInsertTask} onClickFilter={handleFilterTask} onClickSort={handleSortTask} />
             <div className={styles["task-field"]}>
                 <StatusBar status='To Do' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '0') }}>
                     {
