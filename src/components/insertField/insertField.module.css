@@ -1,0 +1,9 @@
+.insert-field {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}

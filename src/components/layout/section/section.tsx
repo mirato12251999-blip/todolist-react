@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navbar } from '../navbar/navbar';
 import { StatusBar } from '../../statusBar/statusBar';
 import { Task } from '../../task/task';
+import { InsertField } from '../../insertField/insertField';
 
 import styles from './section.module.css';
 
@@ -20,6 +21,14 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
         { id: 2, title: 'Third Task', details: 'This is the third task detail.', status: '2' },
         { id: 3, title: 'Fourth Task', details: 'This is the fourth task detail.', status: '3' }
     ]);
+
+    const [visible, setVisible] = useState<boolean>(true);
+
+    /**
+     * Handlers for Drag and Drop functionality
+     * apply to StatusBar and Task components
+     * date: 2025-12-18
+     */
 
     const handleDragStatus = (event: React.DragEvent<HTMLDivElement>, idx: number) => {
         event.dataTransfer.setData("id", String(idx));
@@ -51,10 +60,14 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
         setTasks([...tasks]);
     }
 
+    /***
+     * Handlers for Navbar buttons
+     * apply to insert, filter, and sort tasks
+     * date: 2025-12-20
+     */
+
     const handleInsertTask = () => {
-        const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 0;
-        const newTask: taskType = { id: newId, title: 'New Task', details: 'Details of the new task.', status: '0' };
-        setTasks(prev => [...prev, newTask]);
+        setVisible(!visible);
     }
 
     const handleFilterTask = () => {
@@ -71,6 +84,9 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
             <Navbar onClickInsert={handleInsertTask} onClickFilter={handleFilterTask} onClickSort={handleSortTask} />
             <div className={styles["task-field"]}>
                 <StatusBar status='To Do' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '0') }}>
+                    {
+                        visible ? <InsertField /> : null
+                    }
                     {
                         tasks.filter(task => task.status === '0').map(task => (
                             <Task key={task.id} left={true} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onRightClick={(event) => { handleRightClickStatus(task) }} />
