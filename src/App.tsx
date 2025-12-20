@@ -6,11 +6,15 @@ import { Section } from './components/layout/section/section'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const handleInsertClick = () => {
+    console.log("Insert button clicked");
+  }
 
   return (
     <>
-      <Header />
+      <Header onClickInsert={handleInsertClick} />
       <Section />
       <Footer />
     </>

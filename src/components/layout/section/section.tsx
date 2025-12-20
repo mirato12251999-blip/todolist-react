@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { Navbar } from '../navbar/navbar';
 import { StatusBar } from '../../statusBar/statusBar';
 import { Task } from '../../task/task';
 
@@ -52,34 +53,37 @@ export const Section = (props: React.PropsWithChildren<{}>) => {
 
     return (
         <div className={styles["section"]}>
-            <StatusBar status='To Do' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '0') }}>
-                {
-                    tasks.filter(task => task.status === '0').map(task => (
-                        <Task key={task.id} left={true} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onRightClick={(event) => { handleRightClickStatus(task) }} />
-                    ))
-                }
-            </StatusBar>
-            <StatusBar status='In Progress' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '1') }}>
-                {
-                    tasks.filter(task => task.status === '1').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} onRightClick={(event) => { handleRightClickStatus(task) }} />
-                    ))
-                }
-            </StatusBar>
-            <StatusBar status='Review' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '2') }}>
-                {
-                    tasks.filter(task => task.status === '2').map(task => (
-                        <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} onRightClick={(event) => { handleRightClickStatus(task) }} />
-                    ))
-                }
-            </StatusBar>
-            <StatusBar status='Done' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '3') }}>
-                {
-                    tasks.filter(task => task.status === '3').map(task => (
-                        <Task key={task.id} title={task.title} right={true} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} />
-                    ))
-                }
-            </StatusBar>
+            <Navbar />
+            <div className={styles["task-field"]}>
+                <StatusBar status='To Do' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '0') }}>
+                    {
+                        tasks.filter(task => task.status === '0').map(task => (
+                            <Task key={task.id} left={true} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onRightClick={(event) => { handleRightClickStatus(task) }} />
+                        ))
+                    }
+                </StatusBar>
+                <StatusBar status='In Progress' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '1') }}>
+                    {
+                        tasks.filter(task => task.status === '1').map(task => (
+                            <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} onRightClick={(event) => { handleRightClickStatus(task) }} />
+                        ))
+                    }
+                </StatusBar>
+                <StatusBar status='Review' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '2') }}>
+                    {
+                        tasks.filter(task => task.status === '2').map(task => (
+                            <Task key={task.id} title={task.title} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} onRightClick={(event) => { handleRightClickStatus(task) }} />
+                        ))
+                    }
+                </StatusBar>
+                <StatusBar status='Done' onDragOver={handleOverStatus} onDrop={(event) => { handleDropStatus(event, '3') }}>
+                    {
+                        tasks.filter(task => task.status === '3').map(task => (
+                            <Task key={task.id} title={task.title} right={true} details={task.details} onDragStart={(event) => handleDragStatus(event, task.id)} onLeftClick={(event) => { handleLeftClickStatus(task) }} />
+                        ))
+                    }
+                </StatusBar>
+            </div>
         </div>
     );
 };
