@@ -1,7 +1,19 @@
 import styles from './customInput.module.css';
 
-export const CustomInput = (props: { onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, title?: string }) => {
+interface propsType {
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    label?: string;
+    type?: string;
+    title?: string;
+}
+
+export const CustomInput = (props: propsType) => {
     {
-        return <input type="text" onChange={props.onChange} className={styles["customInput"]} placeholder={props.title ? props.title : "Custom Input"} />;
+        return (
+            <label className={styles["customLabel"]}>
+                {props.label && <span>{props.label + ": "}</span>}
+                <input type={props.type ? props.type : "text"} onChange={props.onChange} className={styles["customInput"]} placeholder={props.title ? "Input your " + props.title : "Custom Input"} />
+            </label>
+        );
     }
 };

@@ -1,7 +1,29 @@
+.customLabel {
+    font-size: 1em;
+    color: white;
+    margin: 7px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 92%;
+}
+
+.customLabel>span {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .customInput {
     padding: 4px;
     border: 1px solid #555;
     border-radius: 4px;
     font-size: .8em;
     background-color: transparent;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.customInput::placeholder {
+    color: white;
 }

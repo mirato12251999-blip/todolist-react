@@ -1,0 +1,15 @@
+.textarea {
+    background-color: transparent;
+    width: 90%;
+    margin: 4px 7px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    outline: none;
+    color: white;
+}
+
+.textarea::placeholder {
+    color: white;
+}
